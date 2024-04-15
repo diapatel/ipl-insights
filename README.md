@@ -12,3 +12,6 @@ This repository houses a Streamlit application designed for in-depth analytics o
 1. Clone the Repository: `git clone https://github.com/your-username/your-repo.git`
 2. Install Dependencies: `pip install -r requirements.txt`
 3. Run the Streamlit App: `streamlit run app.py`
+
+<B>Check out the app here:</B>
+([!https://ipl-analytics.streamlit.app/])
