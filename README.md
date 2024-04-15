@@ -1,4 +1,4 @@
-<b><h1>IPL INSIGHTS/h1></b>
+<b><h1>IPL INSIGHTS</h1></b>
 <b><h2>Overview:</h2></b>
 This repository houses a Streamlit application designed for in-depth analytics of IPL matches and player performances. The application provides a user-friendly interface to explore match statistics, individual player insights, team comparisons, and more.<br>
 
