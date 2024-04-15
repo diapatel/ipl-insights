@@ -14,4 +14,4 @@ This repository houses a Streamlit application designed for in-depth analytics o
 3. Run the Streamlit App: `streamlit run app.py`
 
 <B>Check out the app here:</B>
-([!https://ipl-analytics.streamlit.app/])
+[IPL Insights](!https://ipl-analytics.streamlit.app/)
