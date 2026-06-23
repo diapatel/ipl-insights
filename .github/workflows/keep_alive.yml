@@ -2,8 +2,11 @@ name: Keep Alive
 
 on:
   schedule:
-    - cron: '0 12 * * 1'  # Every Monday at noon UTC
-  workflow_dispatch:       # Lets you trigger it manually too
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write  # 👈 this is what's missing
 
 jobs:
   ping:
