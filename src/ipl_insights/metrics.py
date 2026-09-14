@@ -270,3 +270,7 @@ def avg_margin_by_venue(matches: pd.DataFrame) -> pd.DataFrame:
 
 def player_of_match_text(matches: pd.DataFrame) -> str:
     return " ".join(matches["Player_of_Match"].dropna())
+
+def team_player_of_match_text(matches: pd.DataFrame, team_name: str) -> str:
+    team_matches = matches[(matches["Team1"] == team_name) | (matches["Team2"] == team_name)]
+    return " ".join(team_matches["Player_of_Match"].dropna())

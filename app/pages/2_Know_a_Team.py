@@ -40,6 +40,11 @@ top_bowlers = metrics.top_bowlers_for_team(balls, selected_team)
 fig = charts.bar_chart(top_bowlers, x_col="bowler", y_col="isWicketDelivery")
 st.plotly_chart(fig)
 
+st.subheader("Players of the Match")
+potm_text = metrics.team_player_of_match_text(matches, selected_team)
+fig = charts.wordcloud_figure(potm_text)
+st.pyplot(fig)
+
 st.subheader("Batting Average vs Strike Rate")
 profile = metrics.team_batting_profile(balls, selected_team)
 fig = charts.scatter_chart(profile, x_col="strike_rate", y_col="batting_average", hover_name="batter")

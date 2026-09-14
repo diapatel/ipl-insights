@@ -389,3 +389,14 @@ def test_player_of_match_text():
     result = metrics.player_of_match_text(fake_matches)
 
     assert result == "V Kohli MS Dhoni"
+
+def test_team_player_of_match_text():
+    fake_matches = pd.DataFrame({
+        "Team1": ["CSK", "MI"],
+        "Team2": ["MI", "RCB"],
+        "Player_of_Match": ["MS Dhoni", "R Sharma"],
+    })
+
+    result = metrics.team_player_of_match_text(fake_matches, "CSK")
+
+    assert result == "MS Dhoni"
