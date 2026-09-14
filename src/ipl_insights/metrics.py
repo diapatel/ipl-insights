@@ -4,6 +4,8 @@ def batting_average(balls: pd.DataFrame, player_name: str) -> float:
     player_balls = balls[balls["batter"] == player_name]
     total_runs = player_balls["batsman_run"].sum()
     dismissals = player_balls["isWicketDelivery"].sum()
+    if dismissals == 0:
+        return float(total_runs)  # never dismissed — average equals total runs, by convention
     return round(total_runs / dismissals, 2)
 
 
@@ -11,12 +13,16 @@ def strike_rate(balls: pd.DataFrame, player_name: str) -> float:
     player_balls = balls[balls["batter"] == player_name]
     total_runs = player_balls["batsman_run"].sum()
     total_balls_faced = player_balls["ballnumber"].count()
+    if total_balls_faced == 0:
+        return 0.0
     return round((total_runs / total_balls_faced) * 100, 2)
 
 def dot_ball_percent(balls: pd.DataFrame, player_name: str) -> float:
     player_balls = balls[balls["batter"] == player_name]
     num_dot_balls = player_balls[player_balls["batsman_run"] == 0].shape[0]
     total_balls = player_balls["ballnumber"].count()
+    if total_balls == 0:
+        return 0.0
     return round((num_dot_balls / total_balls) * 100, 2)
 
 def most_runs_in_a_match(balls: pd.DataFrame, player_name: str) -> int:
@@ -251,3 +257,16 @@ def compare_players(balls: pd.DataFrame, player1: str, player2: str) -> pd.DataF
     })
     return result
 
+def avg_margin_by_venue(matches: pd.DataFrame) -> pd.DataFrame:
+    result = (
+        matches.groupby("Venue")["Margin"]
+        .mean()
+        .round(2)
+        .reset_index()
+        .sort_values("Margin")
+    )
+    return result
+
+
+def player_of_match_text(matches: pd.DataFrame) -> str:
+    return " ".join(matches["Player_of_Match"].dropna())

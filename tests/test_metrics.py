@@ -346,3 +346,46 @@ def test_compare_players():
     assert runs_row["V Kohli"] == 10
     assert runs_row["MS Dhoni"] == 20
 
+def test_batting_average_never_dismissed():
+    fake_balls = pd.DataFrame({
+        "batter": ["V Kohli", "V Kohli"],
+        "batsman_run": [4, 6],
+        "isWicketDelivery": [0, 0],
+    })
+
+    result = metrics.batting_average(fake_balls, "V Kohli")
+
+    assert result == 10.0
+
+
+def test_strike_rate_no_balls_faced():
+    fake_balls = pd.DataFrame({
+        "batter": [],
+        "batsman_run": [],
+        "ballnumber": [],
+    })
+
+    result = metrics.strike_rate(fake_balls, "V Kohli")
+
+    assert result == 0.0
+
+
+def test_avg_margin_by_venue():
+    fake_matches = pd.DataFrame({
+        "Venue": ["Wankhede", "Wankhede", "Eden Gardens"],
+        "Margin": [10, 20, 5],
+    })
+
+    result = metrics.avg_margin_by_venue(fake_matches)
+
+    wankhede_avg = result[result["Venue"] == "Wankhede"]["Margin"].iloc[0]
+    assert wankhede_avg == 15.0
+
+def test_player_of_match_text():
+    fake_matches = pd.DataFrame({
+        "Player_of_Match": ["V Kohli", "MS Dhoni", None],
+    })
+
+    result = metrics.player_of_match_text(fake_matches)
+
+    assert result == "V Kohli MS Dhoni"

@@ -1,5 +1,7 @@
 import pandas as pd
 import plotly.express as px
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 
 def runs_over_years_chart(yearly_runs: pd.DataFrame) -> "px.Figure":
@@ -29,4 +31,15 @@ def treemap_chart(data: pd.DataFrame, path_col: str, values_col: str, title: str
 def multi_line_chart(data: pd.DataFrame, x_col: str, y_cols: list[str]) -> "px.Figure":
     fig = px.line(data_frame=data, x=x_col, y=y_cols, markers=True)
     fig.update_xaxes(tickvals=data[x_col])
+    return fig
+
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+
+def wordcloud_figure(text: str):
+    wc = WordCloud(height=600, width=1000, background_color="white").generate(text)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.imshow(wc)
+    ax.axis("off")
     return fig

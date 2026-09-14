@@ -33,9 +33,19 @@ win_data = metrics.win_distribution(matches)
 fig = charts.distribution_pie_chart(win_data, names_col="WinningTeam", values_col="count")
 st.plotly_chart(fig)
 
+st.subheader("Players of the Match")
+potm_text = metrics.player_of_match_text(matches)
+fig = charts.wordcloud_figure(potm_text)
+st.pyplot(fig)
+
 st.subheader("Margin of Victory Distribution")
 margin_data = metrics.margin_distribution(matches)
 fig = charts.bar_chart(margin_data, x_col="Margin", y_col="count")
+st.plotly_chart(fig)
+
+st.subheader("Average Margin of Victory by Venue")
+venue_margins = metrics.avg_margin_by_venue(matches)
+fig = charts.bar_chart(venue_margins, x_col="Margin", y_col="Venue", orientation="h")
 st.plotly_chart(fig)
 
 st.subheader("Popular Umpires")
